@@ -3,10 +3,13 @@ package com.example.tp8_etud_spring_mvc_jpa_security;
 import com.example.tp8_etud_spring_mvc_jpa_security.entities.Etudiant;
 import com.example.tp8_etud_spring_mvc_jpa_security.entities.Genre;
 import com.example.tp8_etud_spring_mvc_jpa_security.repositories.EtudiantRepository;
+import com.example.tp8_etud_spring_mvc_jpa_security.sec.service.SecurityService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
@@ -32,5 +35,31 @@ public class Tp8EtudSpringMvcJpaSecurityApplication {
 
         };
     }
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
+
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    CommandLineRunner saveUsers(SecurityService securityService) {
+        return args -> {
+            securityService.saveNewUser("Fatima Zahra", "1234", "1234");
+            securityService.saveNewUser("Hasnaa", "1234", "1234");
+            securityService.saveNewUser("Achraf", "1234", "1234");
+
+            securityService.saveNewRole("USER", "");
+            securityService.saveNewRole("ADMIN", "");
+
+            securityService.addRoleToUser("Fatima Zahra", "USER");
+            securityService.addRoleToUser("Fatima Zahra", "ADMIN");
+            securityService.addRoleToUser("Hasnaa", "USER");
+            securityService.addRoleToUser("Achraf", "USER");
+
+        };
+
+    }
+
 
 }
