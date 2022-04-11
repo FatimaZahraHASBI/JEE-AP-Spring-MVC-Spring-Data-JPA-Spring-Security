@@ -25,6 +25,8 @@ public class Etudiant {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateNaissance;
-    private enum genre{MASCULIN , FEMININ};
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
     private boolean enRegle;
+
 }
