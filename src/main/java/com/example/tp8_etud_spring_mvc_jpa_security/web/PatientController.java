@@ -27,7 +27,7 @@ public class PatientController {
                            @RequestParam(name = "keyword", defaultValue = "") String keyword){
         Page<Etudiant> pageEtudiants=etudiantRepository.findAll(PageRequest.of(page, size));
         List<Etudiant> etudiantList=new ArrayList<Etudiant>();
-        model.addAttribute("patientList", pageEtudiants.getContent());
+        model.addAttribute("etudiantList", pageEtudiants.getContent());
         model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
         model.addAttribute("currentPage", page);
         model.addAttribute("keyword", keyword);
