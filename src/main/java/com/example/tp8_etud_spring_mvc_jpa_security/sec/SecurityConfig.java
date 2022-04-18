@@ -23,10 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     PasswordEncoder passwordEncoder;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-
-        auth.userDetailsService(userDetailsService);
-
 //        auth.jdbcAuthentication()
 //                .dataSource(dataSource)
 //                .usersByUsernameQuery("select username as principal, password as credentials, active from users where username=?")
@@ -45,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password(passwordEncoder.encode("3333")).roles("USER", "ADMIN");
 
          */
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override

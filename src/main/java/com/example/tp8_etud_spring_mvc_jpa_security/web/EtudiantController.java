@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-public class PatientController {
+public class EtudiantController {
     private EtudiantRepository etudiantRepository;
     @GetMapping(path = "/user/index")
     public String etudiants(Model model,

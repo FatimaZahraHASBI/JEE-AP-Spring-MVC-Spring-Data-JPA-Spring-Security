@@ -39,15 +39,14 @@
                 <input class="form-control" type="date" name="dateNaissance" th:value="${etudiant.dateNaissance}">
                 <span class="text-danger" th:errors="${etudiant.dateNaissance}"></span>
             </div>
-            <div class="form-check">
-                <input type="radio" class="form-check-input" id="femenin" name="optradio" th:value="${etudiant.genre}">FEMENIN
-                <label class="form-check-label" for="femenin"></label>
-                <span class="text-danger" th:errors="${etudiant.genre}"></span>
-            </div>
-            <div class="form-check">
-                <input type="radio" class="form-check-input" id="masculin" name="optradio" th:value="${etudiant.genre}">MASCULIN
-                <label class="form-check-label" for="masculin"></label>
-                <span class="text-danger" th:errors="${etudiant.genre}"></span>
+            <div class="form-group">
+                <div th:each="model : ${T(com.example.tp8_etud_spring_mvc_jpa_security.entities.Genre).values()}">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" th:field="*{etudiant.genre}" th:value="${model}" class="custom-control-input">
+                        <label class="custom-control-label" th:for="${#ids.prev('genre')}" th:text="${model}">model</label>
+                        <span class="text-danger" th:errors="${etudiant.genre}"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="mySwitch" name="enregle" th:value="${etudiant.enRegle}">
